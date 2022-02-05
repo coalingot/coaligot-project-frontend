@@ -60,7 +60,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 // import api from "@/services/patient_api.js";
 // import AuthService from "@/services/AuthService.js";
 // import Global_Store from "@/store";
-import * as yup from "yup";
+import * as yup  from "yup";
 export default {
   //   inject: [Global_Store],
 
