@@ -1,9 +1,17 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <nav class="navbar">
+      <button class="btn btn-block btn-lg btn-color">
+        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+        <span>Logout</span>
+      </button>
+    </nav>
   </div>
-  <router-view />
+
+  <!-- new element -->
+  <div class="page-layout">
+      <router-view />
+  </div>
 </template>
 
 <style>
@@ -12,19 +20,24 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.navbar {
+  padding: 10px;
+  text-align: end;
+  background-color: #ffa3a3;
 }
 
-#nav a {
+.btn-color {
+  background-color: white;
+  font-size: 16px;
   font-weight: bold;
-  color: #2c3e50;
+  padding: 10px;
+  border-radius: 25px;
+  border: 0;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.page-layout {
+  padding: 0 50px 0 50px;
 }
 </style>
