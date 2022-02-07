@@ -15,8 +15,7 @@
                 src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                 class="profile-img-card"
               />
-              <Form>
-                <!-- @submit="handleLogin" :validation-schema="schema" -->
+              <Form @submit="handleLogin" :validation-schema="schema">
                 <div class="form-group" id="text">
                   <label for="username">Username</label>
                   <Field name="username" type="text" class="form-control" />
@@ -57,12 +56,12 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-// import api from "@/services/patient_api.js";
-// import AuthService from "@/services/AuthService.js";
-// import Global_Store from "@/store";
-import * as yup  from "yup";
+// import api from "@/services/Connection.js";
+import AuthService from "@/services/AuthService.js";
+import Global_Store from "@/store";
+import * as yup from "yup";
 export default {
-  //   inject: [Global_Store],
+  inject: [Global_Store],
 
   name: "Login",
   components: {
@@ -82,45 +81,19 @@ export default {
       biguser: null,
     };
   },
-  //   methods: {
-  //     handleLogin(user) {
-  //       AuthService.login(user)
-  //         .then((response) => {
-  //           // console.log(response.user.authorities[0]);
-  //           if (response.user.authorities[0] === "ROLE_PATIENT") {
-  //             api
-  //               .patient_login(Global_Store.currentUser.username)
-  //               .then((response) => {
-  //                 // console.log(response.data);
-  //                 this.biguser = response.data;
-  //                 this.$router.push({
-  //                   name: "PatientDetails",
-  //                   params: { id: this.biguser.id },
-  //                 });
-  //               });
-  //           } else if (response.user.authorities[0] === "ROLE_DOCTOR") {
-  //             console.log("tood");
-  //             api
-  //               .doctor_login(Global_Store.currentUser.username)
-  //               .then((response) => {
-  //                 console.log(response.data);
-  //                 this.biguser = response.data;
-  //                 Global_Store.doctor = response.data;
-  //                 console.log(this.biguser.id);
-  //                 this.$router.push({
-  //                   name: "list",
-  //                   params: { id: this.biguser.id },
-  //                 });
-  //               });
-  //           } else {
-  //             this.$router.push({ name: "list" });
-  //           }
-  //         })
-  //         .catch(() => {
-  //           this.message = "could not login";
-  //         });
-  //     },
-  //   },
+  methods: {
+    handleLogin(user) {
+      AuthService.login(user)
+        .then(() => {
+          console.log("i love u")
+          // this.$router.go()
+          this.$router.push({ name: "ItemList" });
+        })
+        .catch(() => {
+          this.message = "could not login";
+        });
+    },
+  },
 };
 </script>
 
