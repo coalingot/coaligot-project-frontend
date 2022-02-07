@@ -3,17 +3,26 @@
     class="event-link"
     :to="{ name: 'EventDetails', params: { id: event.id } }"
   > -->
-  <div class="item-card">
-    <p class="detail-text">Item A</p>
-    <img src="../assets/KFC.jpg" />
-    <p class="detail-text">Now Price: 555 THB</p>
+  <div class="column">
+    <div class="item-card">
+      <p class="detail-text">{{ item.itemName }}</p>
+      <img :src="item.itemImage" />
+      <p class="detail-text">Start Price: {{ item.startPrice }} THB</p>
+    </div>
   </div>
+
   <!-- </router-link> -->
 </template>
 
 <script>
 export default {
   name: "ItemCard",
+  props: {
+    item: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -21,8 +30,10 @@ export default {
 .item-card {
   width: 200px;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 15%;
   background-color: #888888;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item-card:hover {
@@ -46,6 +57,10 @@ export default {
 
 img {
   width: 200px;
-  height: auto;
+  height: 125px;
+}
+.column {
+  float: left;
+  width: 20%;
 }
 </style>

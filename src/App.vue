@@ -1,10 +1,9 @@
 <template>
   <div id="nav">
     <nav class="navbar">
-      <button class="btn btn-block btn-lg btn-color">
-        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
-        <span>Logout</span>
-      </button>
+      <router-link to="/login">
+        <button class="btn btn-logout-color">Logout</button>
+      </router-link>
     </nav>
   </div>
 
@@ -13,6 +12,17 @@
     <router-view />
   </div>
 </template>
+
+<script>
+/* export default {
+  methods: {
+    logout() {
+      AuthService.logout();
+      this.$router.push({ name: "Login" });
+    },
+  },
+}; */
+</script>
 
 <style>
 #app {
@@ -28,13 +38,14 @@
   background-color: #ffa3a3;
 }
 
-.btn-color {
+.btn-logout-color {
   background-color: white;
   font-size: 16px;
   font-weight: bold;
   padding: 10px;
   border-radius: 25px;
   border: 0;
+  cursor: pointer;
 }
 
 .page-layout {
