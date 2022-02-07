@@ -67,13 +67,6 @@
                     <Field name="email" type="email" class="form-control" />
                     <ErrorMessage name="email" class="error-feedback" />
                   </div>
-                  <label for="image">Image</label>
-                  <UploadImages
-                    @changed="handleImages"
-                    name="imageUrl"
-                    :max="1"
-                  />
-
                   <br />
                   <div class="form-group" id="Button">
                     <button
@@ -111,14 +104,12 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-import UploadImages from "vue-upload-drop-images";
 // eslint-disable-next-line
 // import AuthService from "@/services/AuthService.js";
 // import api from "@/services/patient_api.js";
 export default {
   name: "Register",
   components: {
-    UploadImages,
     Form,
     Field,
     ErrorMessage,
