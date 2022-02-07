@@ -27,7 +27,7 @@ export default {
       return AuthService.hasRoles("ROLE_USER");
     },
   },
-  mounted() {
+  /* mounted() {
     if (!this.GStore.currentUser) {
       this.$router.push({ name: "Login" });
     } else if (this.isUser) {
@@ -35,7 +35,7 @@ export default {
         name: "ItemList",
       });
     }
-  },
+  }, */
 };
 </script>
 

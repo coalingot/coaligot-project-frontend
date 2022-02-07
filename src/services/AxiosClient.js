@@ -5,7 +5,8 @@ const apiClient = axios.create({
 
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("token")
     }
 })
 export default apiClient
