@@ -10,7 +10,7 @@
 
   <!-- new element -->
   <div class="page-layout">
-      <router-view />
+    <router-view />
   </div>
 </template>
 
