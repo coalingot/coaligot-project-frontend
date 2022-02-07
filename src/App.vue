@@ -1,27 +1,42 @@
 <template>
-  <div id="nav">
+  <div v-if="GStore.currentUser" id="nav">
     <nav class="navbar">
-      <router-link to="/login">
-        <button class="btn btn-logout-color">Logout</button>
-      </router-link>
+      <button class="btn btn-logout-color" @click="logout">Logout</button>
     </nav>
   </div>
-
-  <!-- new element -->
   <div class="page-layout">
     <router-view />
   </div>
 </template>
 
 <script>
-/* export default {
+import AuthService from "@/services/AuthService.js";
+export default {
+  inject: ["GStore"],
   methods: {
     logout() {
       AuthService.logout();
       this.$router.push({ name: "Login" });
     },
   },
-}; */
+  computed: {
+    currentUser() {
+      return localStorage.getItem("user");
+    },
+    isUser() {
+      return AuthService.hasRoles("ROLE_USER");
+    },
+  },
+  mounted() {
+    if (!this.GStore.currentUser) {
+      this.$router.push({ name: "Login" });
+    } else if (this.isUser) {
+      this.$router.push({
+        name: "ItemList",
+      });
+    }
+  },
+};
 </script>
 
 <style>
