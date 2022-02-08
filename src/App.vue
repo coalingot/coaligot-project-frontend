@@ -1,6 +1,8 @@
 <template>
   <div v-if="GStore.currentUser" id="nav">
     <nav class="navbar">
+      <h4>{{ GStore.currentUser.username }}</h4>
+
       <button class="btn btn-logout-color" @click="logout">Logout</button>
     </nav>
   </div>
@@ -28,6 +30,11 @@ export default {
 </script>
 
 <style>
+#inline {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

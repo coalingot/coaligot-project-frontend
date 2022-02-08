@@ -14,6 +14,9 @@ const routes = [
     component: Itemdetail,
     props: true,
     beforeEnter: (to) => {
+
+   
+
       if (localStorage.getItem("user") == null) {
         return { name: "Login" };
       } else {
@@ -25,6 +28,7 @@ const routes = [
           })
       }
     }
+
   },
   {
     path: "/",

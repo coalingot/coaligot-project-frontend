@@ -6,28 +6,36 @@
       <!-- {{GStore.item}} -->
       <div class="row">
         <div class="col-12">
-          <img :src="GStore.item.itemImage" />
+          <img :src="GStore.item.auctionItem.itemImage" />
           <br />
         </div>
       </div>
       <h1>
-        Name: <span id="front">{{ GStore.item.itemName }}</span>
+        Name: <span id="front">{{ GStore.item.auctionItem.itemName }}</span>
       </h1>
       <div class="card">
         <h2>
           ITEMDESCRIPTION:
-          <span id="front">{{ GStore.item.itemDescription }}</span> 
+          <span id="front">{{ GStore.item.auctionItem.itemDescription }}</span>
         </h2>
       </div>
       <!-- <p>Current Price: {{ GStore.item.price }} THB</p> -->
     </div>
   </div>
+  <div class="row">
+    <SubmitPrice :item="GStore.item" />
+  </div>
 </template>
 
 <script>
+// import ItemService from "../services/ItemService.js";
+import SubmitPrice from "@/components/SubmitPrice.vue";
 export default {
   inject: ["GStore"],
   name: "Itemdetail",
+  components: {
+    SubmitPrice,
+  },
 };
 </script>
 
