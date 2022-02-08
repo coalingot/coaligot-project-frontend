@@ -6,7 +6,7 @@
   </div>
 
   <div class="footer">
-    <router-link to="#">
+    <router-link to="/additems">
       <button class="btn btn-add-color">Add item</button>
     </router-link>
   </div>

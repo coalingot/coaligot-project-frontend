@@ -10,7 +10,7 @@ export default {
       itemDescription: item.itemDescription,
       endDate: item.endDate,
       startPrice: item.startPrice,
-      imageurl: item.imageurl,
+      itemImage: item.itemImage,
     });
   },
 

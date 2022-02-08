@@ -1,57 +1,88 @@
 <template>
-  <h1 style="margin-left: 28px">Add Item</h1>
-  <main>
-    <ul id="cards">
-      <li class="card" id="card_1">
-        <div class="card__content">
-          <div>
-            <div class="col-md-12">
-              <Form @submit="handleRegister" :validation-schema="schema">
+  <div class="container register">
+    <div class="row">
+      <div class="col-md-9 register-right">
+        <div class="tab-content" id="myTabContent">
+          <h1 style="margin-left: 28px">Add Item</h1>
+          <div class="row register-form">
+            <div class="col-md">
+              <Form @submit="handleItem" :validation-schema="schema">
                 <div v-if="!successful">
-                  <div class="form-group">
-                    <label for="itemName">Item Name</label>
-                    <Field name="itemName" type="text" class="form-control" />
-                    <ErrorMessage name="itemName" class="error-feedback" />
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <Field
+                          name="itemName"
+                          type="text"
+                          class="form-control"
+                        />
+                        <ErrorMessage name="itemName" class="error-feedback" />
+                      </div>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="itemDescription">Item Description</label>
-                    <Field
-                      name="itemDescription"
-                      type="text"
-                      class="form-control"
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="itemDescription">item Description</label>
+                        <Field
+                          name="itemDescription"
+                          type="text"
+                          class="form-control"
+                        />
+                        <ErrorMessage
+                          name="itemDescription"
+                          class="error-feedback"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="startPrice">Start Price</label>
+                        <Field
+                          name="startPrice"
+                          type="double"
+                          class="form-control"
+                        />
+                        <ErrorMessage
+                          name="startPrice"
+                          class="error-feedback"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <Field
+                          name="endDate"
+                          type="date"
+                          class="form-control"
+                        />
+                        <ErrorMessage name="endDate" class="error-feedback" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="itemImage">Image</label>
+                    <UploadImages
+                      @changed="handleImages"
+                      id="image"
+                      name="itemImage"
+                      :max="1"
                     />
-                    <ErrorMessage
-                      name="itemDescription"
-                      class="error-feedback"
-                    />
                   </div>
-
-                  <div class="form-group">
-                    <label for="startPrice">Start Price</label>
-                    <Field name="startPrice" type="text" class="form-control" />
-                    <ErrorMessage name="startPrice" class="error-feedback" />
-                  </div>
-                  <div class="form-group">
-                    <label for="endDate">End Date</label>
-                    <Field name="endDate" type="text" class="form-control" />
-                    <ErrorMessage name="endDate" class="error-feedback" />
-                  </div>
-                  <div class="form-group">
-                    <label for="itemImage">Item Image</label>
-                    <Field name="itemImage" type="text" class="form-control" />
-                    <ErrorMessage name="age" class="error-feedback" />
-                  </div>
-
-                  <div class="form-group">
+                  <br />
+                  <div class="form-group" id="Button">
                     <button
-                      class="btn btn-primary btn-block"
+                      type="submit"
+                      class="btn btn-outline-info btn-block"
                       :disabled="loading"
                     >
                       <span
                         v-show="loading"
                         class="spinner-border spinner-border-sm"
                       ></span>
-                      ADD
+                      Sign Up
                     </button>
                   </div>
                 </div>
@@ -67,26 +98,28 @@
             </div>
           </div>
         </div>
-      </li>
-    </ul>
-  </main>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
 </template>
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import ItemService from "../services/ItemService.js";
+import UploadImages from "vue-upload-drop-images";
 // eslint-disable-next-line
-//import AuthService from '@/services/AuthService.js'
 
 export default {
   name: "AddItems",
   components: {
+    UploadImages,
     Form,
     Field,
     ErrorMessage,
   },
-  // eslint-disable-next-line
-  inject: ['GStore'],
   data() {
     const schema = yup.object().shape({
       itemName: yup
@@ -100,20 +133,11 @@ export default {
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
       startPrice: yup
-        .string()
-        .required("Start Price is required!")
-        .min(6, "Must be at least 6 characters!")
-        .max(40, "Must be maximum 40 characters!"),
+        .string(),
       endDate: yup
-        .string()
-        .required("End Date is required!")
-        .min(3, "Must be at least 3 characters!")
-        .max(30, "Must be maximum 30 characters!"),
+        .string(),
       itemImage: yup
-        .string()
-        .required("Item Image is required!")
-        .min(1, "Must be at least 1 characters!")
-        .max(3, "Must be maximum 3 characters!"),
+        .string(),
     });
 
     return {
@@ -123,38 +147,52 @@ export default {
       schema,
     };
   },
-  mounted() {
-    // if (this.GStore.currentUser) {
-    //   this.$router.push('/items')
-    // }
-  },
-  //   methods: {
-  //     eslint-disable-next-line
-//     handleRegister(user) {
-  //       AuthService.registerUser(user)
-  //         .then(() => {
-  //           this.$router.push({ name: 'User' })
-  //         })
-  //         .catch(() => {
-  //           this.message = 'could not register'
-  //         })
-  //       this.message = ''
-  //       this.successful = false
-  //       this.loading = true
-  //     }
-  //   }
+    methods: {
+    handleItem(item) {
+        ItemService.postItem(item)
+          .then(() => {
+            this.message = "";
+            this.successful = true;
+            this.loading = true;
+          })
+          .catch(() => {
+            this.$router.push("NetworkError");
+          })
+      }
+    }
 };
 </script>
 
 <style scoped>
+#image {
+  display: block;
+}
+#Button {
+  padding-right: 10%;
+  padding-left: 10%;
+}
+.form-control {
+  padding: 1%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.register {
+  background-size: cover;
+  background-image: url("../assets/loginsweetdount.jpg");
+  padding: 5%;
+  margin-top: 3%;
+}
+
+.register .register-form {
+  padding: 7%;
+  color: rgba(253, 253, 253, 0.598);
+  background-color: #f3a4a4;
+  border-radius: 10%;
+}
+
 label {
   display: block;
   margin-top: 10px;
-}
-
-.card-container.card {
-  max-width: 350px !important;
-  padding: 40px 40px;
 }
 
 .profile-img-card {
@@ -166,84 +204,7 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-
 .error-feedback {
-  color: red;
-}
-.card-container.card {
-  max-width: 350px !important;
-  padding: 40px 40px;
-}
-.card {
-  background-color: #f7f7f7;
-  padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.card {
-  border: 10px;
-  border-radius: 20px;
-}
-
-.card {
-  padding-top: calc(var(--index) * var(--card-top-offset));
-}
-
-header,
-main {
-  width: 78vw;
-  margin: 0 auto;
-}
-
-.card__content {
-  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.1), 0 1em 2em rgba(0, 0, 0, 0.1);
-  background: rgb(255, 255, 255);
-  color: rgb(10, 5, 7);
-  border-radius: 1em;
-  overflow: hidden;
-
-  display: grid;
-  grid-template-areas: "text img";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-
-  align-items: stretch;
-  outline: var(--outline-width) solid lime;
-}
-
-.card__content > div {
-  grid-area: text;
-  width: 80%;
-  place-self: center;
-  text-align: left;
-
-  display: grid;
-  gap: 1em;
-  place-items: start;
-}
-
-h1 {
-  font-weight: 300;
-  font-size: 3.5em;
-}
-
-h2 {
-  font-weight: 300;
-  font-size: 2.5em;
-}
-
-p {
-  font-family: sans-serif;
-  font-weight: 300;
-  line-height: 1.42;
-}
-
-.btn {
-  margin-top: 10px;
+  color: rgb(230, 57, 80);
 }
 </style>
