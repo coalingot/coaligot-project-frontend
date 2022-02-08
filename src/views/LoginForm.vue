@@ -25,7 +25,8 @@
                 </div>
                 <br />
                 <br />
-                <div class="form-group" id="Button">
+
+                <div class="form-group column" id="Button" style="margin-bottom:3%">
                   <button class="btn btn-block btn-lg btn-color">
                     <span
                       v-show="loading"
@@ -34,6 +35,16 @@
                     <span>Login</span>
                   </button>
                 </div>
+
+                <router-link class="form-group column" id="Button" :to="{name: 'Register'}">
+                  <button class="btn btn-block btn-lg btn-color">
+                    <span
+                      v-show="loading"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span>Register</span>
+                  </button>
+                </router-link>
 
                 <div class="form-group">
                   <div v-if="message" class="alert alert-danger" role="alert">
