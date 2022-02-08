@@ -11,7 +11,9 @@ export default {
       itemName: item.itemName,
       itemDescription: item.itemDescription,
       endDate: item.endDate,
+
       startPrice: double,
+
       itemImage: item.itemImage,
     });
   },
