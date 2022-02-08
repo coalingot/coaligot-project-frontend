@@ -39,15 +39,8 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="price">Start Price</label>
-                        <Field
-                          name="price"
-                          type="text"
-                          class="form-control"
-                        />
-                        <ErrorMessage
-                          name="price"
-                          class="error-feedback"
-                        />
+                        <Field name="price" type="text" class="form-control" />
+                        <ErrorMessage name="price" class="error-feedback" />
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -72,19 +65,7 @@
                     />
                   </div>
                   <br />
-                  <div class="form-group" id="Button">
-                    <button
-                      type="submit"
-                      class="btn btn-outline-info btn-block"
-                      :disabled="loading"
-                    >
-                      <span
-                        v-show="loading"
-                        class="spinner-border spinner-border-sm"
-                      ></span>
-                      Sign Up
-                    </button>
-                  </div>
+                  <button class="btn btn-add-color">Add NEW</button>
                 </div>
               </Form>
 
@@ -131,12 +112,9 @@ export default {
         .required("Item Description is required!")
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
-      price: yup
-        .string(),
-      endDate: yup
-        .string(),
-      itemImage: yup
-        .string(),
+      price: yup.string(),
+      endDate: yup.string(),
+      itemImage: yup.string(),
     });
 
     return {
@@ -145,7 +123,7 @@ export default {
       message: "",
       schema,
       files: [],
-      itemImage: ""
+      itemImage: "",
     };
   },
   methods: {
@@ -164,26 +142,33 @@ export default {
             this.message = "";
             this.successful = true;
             this.loading = true;
+            this.$router.push("/");
           })
           .catch(() => {
-            this.message ="Connect Fail"
+            this.message = "Connect Fail";
           });
-        });
-      },
-     handleImages(files) {
+      });
+    },
+    handleImages(files) {
       this.files = files;
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
+
 #image {
   display: block;
 }
-#Button {
-  padding-right: 10%;
-  padding-left: 10%;
+.btn-add-color {
+  background-color: #b35e5e;
+  color: white;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 25px;
+  border: 0;
+  cursor: pointer;
 }
 .form-control {
   padding: 1%;

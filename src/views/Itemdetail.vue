@@ -16,7 +16,7 @@
       <div class="card">
         <h2>
           ITEMDESCRIPTION:
-          <span id="front">{{ GStore.item.itemDescription }}</span>
+          <span id="front">{{ GStore.item.itemDescription }}</span> 
         </h2>
       </div>
       <!-- <p>Current Price: {{ GStore.item.price }} THB</p> -->
