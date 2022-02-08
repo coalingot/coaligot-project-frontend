@@ -1,8 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ItemList from "../views/ItemList.vue";
+
+
+import AddItems from "@/views/AddItems.vue";
+
 import Login from "../views/LoginForm.vue";
 import Register from "../views/RegisterForm.vue";
+
 import PostItem from "../views/Postitem.vue";
+
+
+
+
 const routes = [
   {
     path: "/postitem",
@@ -33,6 +42,11 @@ const routes = [
     name: "Register",
     component: Register,
   },
+  {
+    path: "/additems",
+    name: "AddItems",
+    component: AddItems,
+  }
 ];
 
 const router = createRouter({
