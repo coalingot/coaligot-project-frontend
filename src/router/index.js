@@ -7,8 +7,28 @@ import Itemdetail from "../views/Itemdetail.vue";
 import ItemService from "../services/ItemService.js";
 import Global_Store from "@/store";
 import AuthService from "../services/AuthService.js";
-import UserProfile from "../views/UserProfile.vue"
+import UserProfile from "../views/UserProfile.vue";
+import AuctionHistory from "../views/AuctionHistory.vue";
 const routes = [
+  {
+    path: "/auctionHistory/:id",
+    name: "AuctionHistory",
+    component: AuctionHistory,
+    props: true,
+    beforeEnter: (to) => {
+
+      if (localStorage.getItem("user") == null) {
+        return { name: "Login" };
+      } else {
+        return ItemService
+          .getItem(to.params.id)
+          .then((response) => {
+            Global_Store.item = response.data;
+            console.log(Global_Store.item)
+          })
+      }
+    }
+  },
   {
     path: "/itemdetail/:id",
     name: "Itemdetail",

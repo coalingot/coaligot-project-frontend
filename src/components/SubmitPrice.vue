@@ -1,6 +1,7 @@
 <template>
   <br />
   <div class="container-fluid">
+    <h1>Auction Form</h1>
     <div class="item-card">
       <Form @submit="handlesubmit" :validation-schema="schema">
         <div class="form-group" id="text">
@@ -79,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  color: rgba(255, 255, 255, 0.966);
+}
 .item-card {
   width: 200px;
   cursor: pointer;
