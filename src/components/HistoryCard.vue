@@ -2,8 +2,8 @@
   
     <div class="column">
       <div class="item-card">
-        <p class="detail-text">{{ item.auctionUser.username  }}</p>
-         <p class="detail-text">{{ item.submitPrice  }}</p>
+        <p class="detail-text">User: {{ item.auctionUser.username  }}</p>
+         <p class="detail-text">Price: {{ item.submitPrice  }}</p>
         <!-- <p class="detail-text">Current Price: {{ item.submitPrice }} THB</p> -->
       </div>
     </div>
