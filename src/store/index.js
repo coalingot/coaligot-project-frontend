@@ -1,8 +1,8 @@
-import { createStore } from "vuex";
+import { reactive } from "vue";
+export default reactive({
+  flashMessage: "",
+  patient: null,
+  user: null,
 
-export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  currentUser: JSON.parse(localStorage.getItem("user")),
 });
