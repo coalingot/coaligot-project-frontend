@@ -142,22 +142,37 @@ export default {
       loading: false,
       message: "",
       schema,
+      files: [],
+      itemImage: ""
     };
   },
   methods: {
     // eslint-disable-next-line
 
     handleItem(item) {
-      ItemService.postItem(item)
-        .then(() => {
-          this.message = "";
-          this.successful = true;
-          this.loading = true;
-          // this.$router.push("/login");
+      Promise.all(
+        this.files.map((file) => {
+          console.log(file);
+          return ItemService.uploadFile(file);
         })
-        .catch(() => {
-          this.$router.push("NetworkError");
-        });
+      ).then((response) => {
+        item.itemImage = response.map((r) => r.data);
+        item.itemImage = item.itemImage[0];
+        console.log(item.itemImage);
+        ItemService.postItem(item)
+          .then(() => {
+            this.message = "";
+            this.successful = true;
+            this.loading = true;
+            // this.$router.push("/login");
+          })
+          .catch(() => {
+            this.message ="connect fail"
+          });
+      });
+    },
+     handleImages(files) {
+      this.files = files;
     },
   },
 };

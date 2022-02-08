@@ -5,11 +5,15 @@ export default {
     return apiClient.get("/items");
   },
   postItem(item) {
+    console.log(item.itemImage)
+    let double = parseFloat(item.startPrice)
     return apiClient.post("/items", {
       itemName: item.itemName,
       itemDescription: item.itemDescription,
       endDate: item.endDate,
-      startPrice: item.startPrice,
+
+      startPrice: double,
+
       itemImage: item.itemImage,
     });
   },
