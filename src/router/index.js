@@ -7,6 +7,7 @@ import Itemdetail from "../views/Itemdetail.vue";
 import ItemService from "../services/ItemService.js";
 import Global_Store from "@/store";
 import AuthService from "../services/AuthService.js";
+import UserProfile from "../views/UserProfile.vue"
 const routes = [
   {
     path: "/itemdetail/:id",
@@ -14,8 +15,6 @@ const routes = [
     component: Itemdetail,
     props: true,
     beforeEnter: (to) => {
-
-   
 
       if (localStorage.getItem("user") == null) {
         return { name: "Login" };
@@ -59,6 +58,25 @@ const routes = [
         return { name: "ItemList" };
       }
     },
+  },
+  {
+    path: "/userprofile/:id",
+    name:"UserProfile",
+    component: UserProfile,
+    props: true,
+    beforeEnter: (to) => {
+
+      if (localStorage.getItem("user") == null) {
+        return { name: "Login" };
+      } else {
+        return ItemService
+          .getUserProfile(to.params.id)
+          .then((response) => {
+            Global_Store.user = response.data;
+            console.log(Global_Store.user)
+          })
+      }
+    }
   },
   {
     path: "/additems",

@@ -1,8 +1,12 @@
 <template>
   <div v-if="GStore.currentUser" id="nav">
     <nav class="navbar">
-      <h4>{{ GStore.currentUser.username }}</h4>
-
+      <router-link
+        class="event-link"
+        :to="{ name: 'UserProfile', params: { id: GStore.currentUser.id } }"
+      >
+        <h4>{{ GStore.currentUser.username }}</h4></router-link
+      >
       <button class="btn btn-logout-color" @click="logout">Logout</button>
     </nav>
   </div>

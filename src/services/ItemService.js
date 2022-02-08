@@ -4,7 +4,9 @@ export default {
   getAllItems() {
     return apiClient.get("/see-all-auction");
   },
-
+  getUserProfile(id){
+    return apiClient.get("/auctionList/"+id);
+  },
   submitPrice(submitPrice, userId, auctionId) {
     let double = parseFloat(submitPrice);
     console.log(double)

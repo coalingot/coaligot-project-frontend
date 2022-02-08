@@ -69,7 +69,7 @@ export default {
         this.item.auctionId
       )
         .then(() => {
-        //   this.$router.push({ name: "ItemList" });
+          this.$router.push({ name: "ItemList" });
         })
         .catch(() => {
           this.message = "could not submit";
