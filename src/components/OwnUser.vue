@@ -1,18 +1,14 @@
 <template>
-<div v-if="item.status">
-  <router-link
-    class="event-link"
-    :to="{ name: 'Itemdetail', params: { id: item.auctionId } }"
-  >
     <div class="column">
       <div class="item-card">
-        <p class="detail-text">{{ item.auctionItem.itemName }}</p>
-        <img :src="item.auctionItem.itemImage" />
-        <p class="detail-text">Current Price: {{ item.highestPrice }} THB</p>
+         <p class="detail-text">Name: {{ item.itemName  }}</p>
+         <img :src="item.itemImage" />
+         <p class="detail-text">Description: {{ item.itemDescription  }}</p>
+         <p class="detail-text">Price: {{ item.price  }}</p>
       </div>
     </div>
-  </router-link>
-</div>
+
+
 </template>
 
 <script>
@@ -32,9 +28,10 @@ export default {
   width: 200px;
   cursor: pointer;
   margin-bottom: 15%;
-  background-color: #888888;
+  background-color: #f2f2f2;
   margin-left: auto;
   margin-right: auto;
+  width: fit-content;
 }
 
 .item-card:hover {
@@ -48,12 +45,12 @@ export default {
 }
 
 .detail-text {
-  color: white;
+  color: black;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
   margin-top: auto;
   margin-bottom: auto;
-  padding: 10px;
+  padding: 14px;
 }
 
 img {

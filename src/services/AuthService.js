@@ -33,13 +33,12 @@ export default {
     });
   },
   saveUser(user) {
-    return apiClient.post("/signup", {
+    return apiClient.post("/registers", {
       username: user.username,
       email: user.email,
       password: user.password,
       firstname: user.firstname,
       lastname: user.lastname,
-      imageurl: user.imageurl,
     });
   },
   getUser() {

@@ -1,18 +1,15 @@
 <template>
-<div v-if="item.status">
-  <router-link
-    class="event-link"
-    :to="{ name: 'Itemdetail', params: { id: item.auctionId } }"
-  >
+  
     <div class="column">
       <div class="item-card">
-        <p class="detail-text">{{ item.auctionItem.itemName }}</p>
-        <img :src="item.auctionItem.itemImage" />
-        <p class="detail-text">Current Price: {{ item.highestPrice }} THB</p>
+        <p class="detail-text">User: {{ item.auctionUser.username  }}</p>
+         <p class="detail-text">Price: {{ item.submitPrice  }}</p>
+        <!-- <p class="detail-text">Current Price: {{ item.submitPrice }} THB</p> -->
       </div>
     </div>
-  </router-link>
-</div>
+    <br>
+
+
 </template>
 
 <script>
@@ -28,11 +25,13 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  color: rgba(255, 255, 255, 0.966);
+}
 .item-card {
-  width: 200px;
+  width: 100%;
   cursor: pointer;
-  margin-bottom: 15%;
-  background-color: #888888;
+  background-color: #df8181ee;
   margin-left: auto;
   margin-right: auto;
 }
@@ -43,7 +42,7 @@ export default {
 }
 
 .item-link {
-  color: #2c3e50;
+  color: #e9a1a1;
   text-decoration: none;
 }
 
@@ -56,12 +55,8 @@ export default {
   padding: 10px;
 }
 
-img {
-  width: 200px;
-  height: 125px;
-}
 .column {
-  float: left;
-  width: 20%;
+  padding-left: 25%;
+  max-width: 50%;
 }
 </style>
