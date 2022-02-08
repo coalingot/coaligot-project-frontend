@@ -7,7 +7,7 @@
     <div class="item-card">
       <p class="detail-text">{{ item.itemName }}</p>
       <img :src="item.itemImage" />
-      <p class="detail-text">Start Price: {{ item.startPrice }} THB</p>
+      <p class="detail-text">Start Price: {{ item.price }} THB</p>
     </div>
   </div>
 
