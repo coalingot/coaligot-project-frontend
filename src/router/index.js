@@ -6,6 +6,7 @@ import Register from "../views/RegisterForm.vue";
 import Itemdetail from "../views/Itemdetail.vue";
 import ItemService from "../services/ItemService.js";
 import Global_Store from "@/store";
+import AuthService from "../services/AuthService.js";
 const routes = [
   {
     path: "/itemdetail/:id",
@@ -13,53 +14,57 @@ const routes = [
     component: Itemdetail,
     props: true,
     beforeEnter: (to) => {
-      return ItemService
-        .getItem(to.params.id)
-        .then((response) => {
-          Global_Store.item = response.data;
-          console.log( Global_Store.item )
-        })
-        .catch((error) => {
-          if (error.response && error.response.status == 404) {
-            return {
-              name: "404",
-            };
-          } else {
-            return {
-              name: "network_error",
-            };
-          }
-        });
-    },
+      if (localStorage.getItem("user") == null) {
+        return { name: "Login" };
+      } else {
+        return ItemService
+          .getItem(to.params.id)
+          .then((response) => {
+            Global_Store.item = response.data;
+            console.log(Global_Store.item)
+          })
+      }
+    }
   },
   {
     path: "/",
     name: "ItemList",
     component: ItemList,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    beforeEnter: () => {
+      if (localStorage.getItem("user") == null) {
+        return { name: "Login" };
+      }
+    },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
+    beforeEnter: () => {
+      if (AuthService.hasRoles("ROLE_USER")) {
+        return { name: "ItemList" };
+      }
+    },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
+    beforeEnter: () => {
+      if (AuthService.hasRoles("ROLE_USER")) {
+        return { name: "ItemList" };
+      }
+    },
   },
   {
     path: "/additems",
     name: "AddItems",
     component: AddItems,
+    beforeEnter: () => {
+      if (localStorage.getItem("user") == null) {
+        return { name: "Login" };
+      }
+    },
   },
 ];
 

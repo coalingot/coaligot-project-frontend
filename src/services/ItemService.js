@@ -4,8 +4,8 @@ export default {
   getAllItems() {
     return apiClient.get("/see-all-auction");
   },
-  getItem(id ){
-    return apiClient.get("/items/"+ id);
+  getItem(id) {
+    return apiClient.get("/items/" + id);
   },
   postItem(item) {
     console.log(item.itemImage)

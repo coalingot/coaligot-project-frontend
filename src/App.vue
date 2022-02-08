@@ -23,18 +23,6 @@ export default {
     currentUser() {
       return localStorage.getItem("user");
     },
-    isUser() {
-      return AuthService.hasRoles("ROLE_USER");
-    },
-  },
-  mounted() {
-    if (!this.GStore.currentUser) {
-      this.$router.push({ name: "Login" });
-    } else if (this.isUser) {
-      this.$router.push({
-        name: "ItemList",
-      });
-    }
   },
 };
 </script>
