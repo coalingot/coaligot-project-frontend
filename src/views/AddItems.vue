@@ -1,82 +1,89 @@
 <template>
-    <h1 style="margin-left: 28px">Add Item</h1>
-    <main>
-        <ul id="cards">
-        <li class="card" id="card_1">
-            <div class="card__content">
-            <div>
-                <div class="col-md-12">
-                <Form @submit="handleRegister" :validation-schema="schema">
-                    <div v-if="!successful">
-                        <div class="form-group">
-                            <label for="itemName">Item Name</label>
-                            <Field name="itemName" type="text" class="form-control" />
-                            <ErrorMessage name="itemName" class="error-feedback" />
-                        </div>
-                        <div class="form-group">
-                            <label for="itemDescription">Item Description</label>
-                            <Field name="itemDescription" type="text" class="form-control"/>
-                            <ErrorMessage name="itemDescription" class="error-feedback" />
-                        </div>
+  <h1 style="margin-left: 28px">Add Item</h1>
+  <main>
+    <ul id="cards">
+      <li class="card" id="card_1">
+        <div class="card__content">
+          <div>
+            <div class="col-md-12">
+              <Form @submit="handleRegister" :validation-schema="schema">
+                <div v-if="!successful">
+                  <div class="form-group">
+                    <label for="itemName">Item Name</label>
+                    <Field name="itemName" type="text" class="form-control" />
+                    <ErrorMessage name="itemName" class="error-feedback" />
+                  </div>
+                  <div class="form-group">
+                    <label for="itemDescription">Item Description</label>
+                    <Field
+                      name="itemDescription"
+                      type="text"
+                      class="form-control"
+                    />
+                    <ErrorMessage
+                      name="itemDescription"
+                      class="error-feedback"
+                    />
+                  </div>
 
-                        <div class="form-group">
-                            <label for="startPrice">Start Price</label>
-                            <Field name="startPrice" type="text" class="form-control" />
-                            <ErrorMessage name="startPrice" class="error-feedback" />
-                        </div>
-                        <div class="form-group">
-                            <label for="endDate">End Date</label>
-                            <Field name="endDate" type="text" class="form-control" />
-                            <ErrorMessage name="endDate" class="error-feedback" />
-                        </div>
-                        <div class="form-group">
-                            <label for="itemImage">Item Image</label>
-                            <Field name="itemImage" type="text" class="form-control" />
-                            <ErrorMessage name="age" class="error-feedback" />
-                        </div>
+                  <div class="form-group">
+                    <label for="startPrice">Start Price</label>
+                    <Field name="startPrice" type="text" class="form-control" />
+                    <ErrorMessage name="startPrice" class="error-feedback" />
+                  </div>
+                  <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <Field name="endDate" type="text" class="form-control" />
+                    <ErrorMessage name="endDate" class="error-feedback" />
+                  </div>
+                  <div class="form-group">
+                    <label for="itemImage">Item Image</label>
+                    <Field name="itemImage" type="text" class="form-control" />
+                    <ErrorMessage name="age" class="error-feedback" />
+                  </div>
 
-                        <div class="form-group">
-                            <button
-                            class="btn btn-primary btn-block"
-                            :disabled="loading"
-                            >
-                            <span
-                                v-show="loading"
-                                class="spinner-border spinner-border-sm"
-                            ></span>
-                            ADD
-                            </button>
-                        </div>
-                    </div>
-                </Form>
-
-                <div
-                    v-if="message"
-                    class="alert"
-                    :class="successful ? 'alert-success' : 'alert-danger'"
-                >
-                    {{ message }}
+                  <div class="form-group">
+                    <button
+                      class="btn btn-primary btn-block"
+                      :disabled="loading"
+                    >
+                      <span
+                        v-show="loading"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      ADD
+                    </button>
+                  </div>
                 </div>
-                </div>
+              </Form>
+
+              <div
+                v-if="message"
+                class="alert"
+                :class="successful ? 'alert-success' : 'alert-danger'"
+              >
+                {{ message }}
+              </div>
             </div>
-            </div>
-        </li>
-        </ul>
-    </main>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </main>
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from 'vee-validate'
-import * as yup from 'yup'
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 // eslint-disable-next-line
 //import AuthService from '@/services/AuthService.js'
 
 export default {
-  name: 'AddItems',
+  name: "AddItems",
   components: {
     Form,
     Field,
-    ErrorMessage
+    ErrorMessage,
   },
   // eslint-disable-next-line
   inject: ['GStore'],
@@ -84,59 +91,59 @@ export default {
     const schema = yup.object().shape({
       itemName: yup
         .string()
-        .required('Item Name is required!')
-        .min(3, 'Must be at least 3 characters!')
-        .max(20, 'Must be maximum 20 characters!'),
+        .required("Item Name is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(20, "Must be maximum 20 characters!"),
       itemDescription: yup
         .string()
-        .required('Item Description is required!')
-        .min(3, 'Must be at least 3 characters!')
-        .max(300, 'Must be maximum 300 characters!'),
+        .required("Item Description is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(300, "Must be maximum 300 characters!"),
       startPrice: yup
         .string()
-        .required('Start Price is required!')
-        .min(6, 'Must be at least 6 characters!')
-        .max(40, 'Must be maximum 40 characters!'),
+        .required("Start Price is required!")
+        .min(6, "Must be at least 6 characters!")
+        .max(40, "Must be maximum 40 characters!"),
       endDate: yup
         .string()
-        .required('End Date is required!')
-        .min(3, 'Must be at least 3 characters!')
-        .max(30, 'Must be maximum 30 characters!'),
+        .required("End Date is required!")
+        .min(3, "Must be at least 3 characters!")
+        .max(30, "Must be maximum 30 characters!"),
       itemImage: yup
         .string()
-        .required('Item Image is required!')
-        .min(1, 'Must be at least 1 characters!')
-        .max(3, 'Must be maximum 3 characters!'),
-    })
+        .required("Item Image is required!")
+        .min(1, "Must be at least 1 characters!")
+        .max(3, "Must be maximum 3 characters!"),
+    });
 
     return {
       successful: false,
       loading: false,
-      message: '',
-      schema
-    }
+      message: "",
+      schema,
+    };
   },
   mounted() {
     // if (this.GStore.currentUser) {
     //   this.$router.push('/items')
     // }
   },
-//   methods: {
-//     eslint-disable-next-line
+  //   methods: {
+  //     eslint-disable-next-line
 //     handleRegister(user) {
-//       AuthService.registerUser(user)
-//         .then(() => {
-//           this.$router.push({ name: 'User' })
-//         })
-//         .catch(() => {
-//           this.message = 'could not register'
-//         })
-//       this.message = ''
-//       this.successful = false
-//       this.loading = true
-//     }
-//   }
-}
+  //       AuthService.registerUser(user)
+  //         .then(() => {
+  //           this.$router.push({ name: 'User' })
+  //         })
+  //         .catch(() => {
+  //           this.message = 'could not register'
+  //         })
+  //       this.message = ''
+  //       this.successful = false
+  //       this.loading = true
+  //     }
+  //   }
+};
 </script>
 
 <style scoped>
@@ -201,7 +208,7 @@ main {
   overflow: hidden;
 
   display: grid;
-  grid-template-areas: 'text img';
+  grid-template-areas: "text img";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
 

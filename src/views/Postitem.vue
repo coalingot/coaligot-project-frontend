@@ -132,8 +132,8 @@ export default {
         .required("Username is required!")
         .min(3, "Must be at least 3 characters!")
         .max(20, "Must be maximum 20 characters!"),
-      endDate: yup,
-      startPrice: yup,
+      endDate: yup.string(),
+      startPrice: yup.string(),
       itemImage: yup.string(),
     });
 
@@ -142,31 +142,22 @@ export default {
       loading: false,
       message: "",
       schema,
-      itemImage: "",
-      
     };
   },
   methods: {
     // eslint-disable-next-line
 
-    handleRegister(item).then((response) => {
-        item.itemImage = response.map((r) => r.data);
-        item.itemImage = item.itemImage[0];
-        console.log(item.itemImage);
-        ItemService.postItem(item)
-          .then(() => {
-            this.message = "";
-            this.successful = true;
-            this.loading = true;
-            this.$router.push("/login");
-          })
-          .catch(() => {
-            this.$router.push("NetworkError");
-          });
-      });
-    ,
-    handleImages(files) {
-      this.files = files;
+    handleItem(item) {
+      ItemService.postItem(item)
+        .then(() => {
+          this.message = "";
+          this.successful = true;
+          this.loading = true;
+          // this.$router.push("/login");
+        })
+        .catch(() => {
+          this.$router.push("NetworkError");
+        });
     },
   },
 };
