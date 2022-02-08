@@ -1,17 +1,18 @@
 <template>
+<div v-if="item.status">
   <router-link
     class="event-link"
-    :to="{ name: 'Itemdetail', params: { id: item.auctionItem.itemId } }"
+    :to="{ name: 'Itemdetail', params: { id: item.auctionId } }"
   >
-  <div class="column">
-    <div class="item-card">
-      <p class="detail-text">{{ item.auctionItem.itemName }}</p>
-      <img :src="item.auctionItem.itemImage" />
-      <p class="detail-text">Current Price: {{ item.highestPrice }} THB</p>
+    <div class="column">
+      <div class="item-card">
+        <p class="detail-text">{{ item.auctionItem.itemName }}</p>
+        <img :src="item.auctionItem.itemImage" />
+        <p class="detail-text">Current Price: {{ item.highestPrice }} THB</p>
+      </div>
     </div>
-  </div>
-
   </router-link>
+</div>
 </template>
 
 <script>

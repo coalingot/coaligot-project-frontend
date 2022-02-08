@@ -13,11 +13,10 @@ const routes = [
     component: Itemdetail,
     props: true,
     beforeEnter: (to) => {
-      return ItemService
-        .getItem(to.params.id)
+      return ItemService.getItem(to.params.id)
         .then((response) => {
           Global_Store.item = response.data;
-          console.log( Global_Store.item )
+          console.log(Global_Store.item);
         })
         .catch((error) => {
           if (error.response && error.response.status == 404) {
