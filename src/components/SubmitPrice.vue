@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     handlesubmit(input) {
-   
       console.log(input.submitPrice);
       ItemService.submitPrice(
         input.submitPrice,

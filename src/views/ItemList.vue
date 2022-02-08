@@ -53,11 +53,4 @@ export default {
   border: 0;
   cursor: pointer;
 }
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-  text-align: center;
-}
 </style>

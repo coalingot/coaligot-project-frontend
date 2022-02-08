@@ -1,13 +1,27 @@
 <template>
   <div v-if="GStore.currentUser" id="nav">
     <nav class="navbar">
-      <router-link
+      <div class="row">
+        <div class="columnn2">
+          <router-link
+            :to="{ name: 'ItemList' }"
+            style="text-align: start; font-weight: bold"
+          >
+            <span>CoalIngot Auction</span></router-link
+          >
+        </div>
+        <div class="columnn">
+        <router-link
         class="event-link"
         :to="{ name: 'UserProfile', params: { id: GStore.currentUser.id } }"
       >
-        <h4>{{ GStore.currentUser.username }}</h4></router-link
+          <span style="font-weight: bold; margin-right: 2%">
+            {{ GStore.currentUser.username }}</span
+          ></router-link
       >
-      <button class="btn btn-logout-color" @click="logout">Logout</button>
+          <button class="btn btn-logout-color" @click="logout">Logout</button>
+        </div>
+      </div>
     </nav>
   </div>
   <div class="page-layout">
@@ -64,5 +78,29 @@ export default {
 
 .page-layout {
   padding: 0 50px 0 50px;
+}
+
+.row:after {
+  margin: auto 0 auto 0;
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.columnn {
+  margin: 0.4% 0 auto 0;
+  float: left;
+  width: 50%;
+}
+.columnn2 {
+  margin: 0.7% 0 auto 0;
+  float: left;
+  width: 50%;
+  text-align: start;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>
