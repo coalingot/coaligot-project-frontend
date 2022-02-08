@@ -143,7 +143,7 @@ export default {
       message: "",
       schema,
       files: [],
-      itemImage: ""
+      itemImage: "",
     };
   },
   methods: {
@@ -167,11 +167,11 @@ export default {
             // this.$router.push("/login");
           })
           .catch(() => {
-            this.message ="connect fail"
+            this.message = "connect fail";
           });
       });
     },
-     handleImages(files) {
+    handleImages(files) {
       this.files = files;
     },
   },

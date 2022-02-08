@@ -1,22 +1,11 @@
 <template>
-  <router-link
-    class="event-link"
-    :to="{ name: 'ItemListLayout', params: { id: item.itemId } }"
-  >
-    <div class="column">
-      <div class="item-card">
-        <p class="detail-text">{{ item.itemName }}</p>
-        gg mtf :{{ item.itemId }}
-        <img :src="item.itemImage" />
-        <p class="detail-text">Start Price: {{ item.price }} THB</p>
-      </div>
-    </div>
-  </router-link>
+  <p class="detail-text">{{ Global_Store.item.itemName }}</p>
 </template>
 
 <script>
 export default {
   name: "ItemCard",
+  inject: ["Global_Store"],
   props: {
     item: {
       type: Object,

@@ -11,30 +11,30 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="username">Username</label>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <Field
                           name="username"
                           type="text"
                           class="form-control"
                         />
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <ErrorMessage name="username" class="error-feedback" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="password">Password</label>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <Field
                           name="password"
                           type="password"
                           class="form-control"
                         />
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <ErrorMessage name="password" class="error-feedback" />
                       </div>
                     </div>
@@ -43,41 +43,41 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="firstname">Firstname</label>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <Field
                           name="firstname"
                           type="text"
                           class="form-control"
                         />
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <ErrorMessage name="firstname" class="error-feedback" />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="lastname">Lastname</label>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <Field
                           name="lastname"
                           type="text"
                           class="form-control"
                         />
-                        <br>
-                        <br>
+                        <br />
+                        <br />
                         <ErrorMessage name="lastname" class="error-feedback" />
                       </div>
                     </div>
                   </div>
                   <div class="form-group" id="text">
                     <label for="email">Email</label>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <Field name="email" type="email" class="form-control" />
-                    <br>
-                    <br>
+                    <br />
+                    <br />
                     <ErrorMessage name="email" class="error-feedback" />
                   </div>
                   <br />
@@ -127,7 +127,7 @@ export default {
     Field,
     ErrorMessage,
   },
-     inject: ["Global_Store"],
+  inject: ["Global_Store"],
   // eslint-disable-next-line
   data() {
     const schema = yup.object().shape({
@@ -159,25 +159,25 @@ export default {
       imageurl: yup.string(),
     });
     return {
-      schema
+      schema,
     };
   },
-     methods: {
-       // eslint-disable-next-line
+  methods: {
+    // eslint-disable-next-line
        handleRegister(user) {
-         // console.log(user)
-           AuthService.saveUser(user)
-             .then(() => {
-               this.$router.push({ name: "Login" });
-             })
-             .catch(() => {
-               this.$router.push("NetworkError");
-             });
-       },
-       handleImages(files) {
-         this.files = files;
-       },
-     },
+      // console.log(user)
+      AuthService.saveUser(user)
+        .then(() => {
+          this.$router.push({ name: "Login" });
+        })
+        .catch(() => {
+          this.$router.push("NetworkError");
+        });
+    },
+    handleImages(files) {
+      this.files = files;
+    },
+  },
 };
 </script>
 
@@ -197,14 +197,14 @@ export default {
   justify-content: center;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: "Ubuntu", sans-serif;
   box-sizing: border-box;
 }
 
-.register-right{
+.register-right {
   height: 100vh;
   background-size: cover;
   display: flex;
@@ -212,26 +212,23 @@ export default {
   justify-content: center;
 }
 
-.tab-content{
+.tab-content {
   width: 600px;
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.register-form{
+.register-form {
   background: #f3a4a4;
   padding: 60px 40px;
 }
 
-.col-md-6{
+.col-md-6 {
   padding: 10px;
 }
 
-.error-feedback{
+.error-feedback {
   color: red;
 }
-
-
-
 </style>

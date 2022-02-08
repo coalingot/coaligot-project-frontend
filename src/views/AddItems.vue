@@ -132,12 +132,9 @@ export default {
         .required("Item Description is required!")
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
-      startPrice: yup
-        .string(),
-      endDate: yup
-        .string(),
-      itemImage: yup
-        .string(),
+      startPrice: yup.string(),
+      endDate: yup.string(),
+      itemImage: yup.string(),
     });
 
     return {
@@ -147,19 +144,19 @@ export default {
       schema,
     };
   },
-    methods: {
+  methods: {
     handleItem(item) {
-        ItemService.postItem(item)
-          .then(() => {
-            this.message = "";
-            this.successful = true;
-            this.loading = true;
-          })
-          .catch(() => {
-            this.$router.push("NetworkError");
-          })
-      }
-    }
+      ItemService.postItem(item)
+        .then(() => {
+          this.message = "";
+          this.successful = true;
+          this.loading = true;
+        })
+        .catch(() => {
+          this.$router.push("NetworkError");
+        });
+    },
+  },
 };
 </script>
 

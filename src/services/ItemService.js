@@ -4,9 +4,12 @@ export default {
   getAllItems() {
     return apiClient.get("/items");
   },
+  getItem(id) {
+    return apiClient.get("/items/" + id);
+  },
   postItem(item) {
-    console.log(item.itemImage)
-    let double = parseFloat(item.startPrice)
+    console.log(item.itemImage);
+    let double = parseFloat(item.startPrice);
     return apiClient.post("/items", {
       itemName: item.itemName,
       itemDescription: item.itemDescription,
