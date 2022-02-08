@@ -2,52 +2,77 @@
   <br />
   <br />
   <div class="container-fluid">
+    <h1>Auction Item</h1>
     <div class="item-card">
-      <!-- {{GStore.item}} -->
       <div class="row">
-        <div class="col-12">
-          <img :src="GStore.item.auctionItem.itemImage" />
-          <br />
+        <!-- {{ GStore.item }} -->
+
+        <div class="row">
+          <div class="col-12">
+            <img :src="GStore.item.auctionItem.itemImage" />
+            <br />
+            <!-- <router-link
+              :to="{ name: 'AuctionHistory', params: { id: GStore.item.auctionId } }"
+              style="text-align: start; font-weight: bold"
+            >
+              <b> history</b>
+            </router-link> -->
+          </div>
         </div>
-      </div>
-       <h1>
-        HighestPrice: <span id="front">{{ GStore.item.highestPrice }}</span>
-      </h1>
-      <h2>
-        Name: <span id="front">{{ GStore.item.auctionItem.itemName }}</span>
-      </h2>
-      <div class="card">
+        <h2>
+          HighestPrice: <span id="front">{{ GStore.item.highestPrice }}</span>
+        </h2>
         <h3>
-          ITEMDESCRIPTION:
-          <span id="front">{{ GStore.item.auctionItem.itemDescription }}</span>
+          Name: <span id="front">{{ GStore.item.auctionItem.itemName }}</span>
         </h3>
+        <div class="card">
+          <h4>
+            ITEMDESCRIPTION:
+            <span id="front">{{
+              GStore.item.auctionItem.itemDescription
+            }}</span>
+          </h4>
+        </div>
+        <!-- <p>Current Price: {{ GStore.item.price }} THB</p> -->
       </div>
-      <!-- <p>Current Price: {{ GStore.item.price }} THB</p> -->
     </div>
   </div>
+
   <div class="row">
+    
     <SubmitPrice :item="GStore.item" />
+  </div>
+  <div class="container-fluid">
+  <h1>Auction Board</h1>
+  <div class="card">
+    <HistoryCard :item="x" v-for="x in GStore.item.histories" :key="x.id" />
+  </div>
   </div>
 </template>
 
 <script>
 // import ItemService from "../services/ItemService.js";
 import SubmitPrice from "@/components/SubmitPrice.vue";
+import HistoryCard from "@/components/HistoryCard.vue";
 export default {
   inject: ["GStore"],
   name: "Itemdetail",
   components: {
     SubmitPrice,
+    HistoryCard
   },
 };
 </script>
 
 <style scoped>
+h1{
+  color: rgba(255, 255, 255, 0.966);
+}
 .col-12 {
   padding: 1%;
 }
 #front {
-  font: 0.8em sans-serif;
+  font: 0.9em sans-serif;
   color: rgb(255, 238, 238);
 }
 img {
