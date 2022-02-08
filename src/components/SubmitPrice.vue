@@ -61,7 +61,6 @@ export default {
   },
   methods: {
     handlesubmit(input) {
-   
       console.log(input.submitPrice);
       ItemService.submitPrice(
         input.submitPrice,
@@ -69,7 +68,7 @@ export default {
         this.item.auctionId
       )
         .then(() => {
-        //   this.$router.push({ name: "ItemList" });
+          this.$router.push({ name: "ItemList" });
         })
         .catch(() => {
           this.message = "could not submit";

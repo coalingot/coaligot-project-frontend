@@ -112,7 +112,7 @@ export default {
         .required("Item Description is required!")
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
-      price: yup.string(),
+      price: yup.number().required("Price is required!!"),
       endDate: yup.string(),
       itemImage: yup.string(),
     });
@@ -142,7 +142,7 @@ export default {
             this.message = "";
             this.successful = true;
             this.loading = true;
-            this.$router.push("/");
+            this.$router.push({ name: "ItemList" });
           })
           .catch(() => {
             this.message = "Connect Fail";
