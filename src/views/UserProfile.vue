@@ -2,33 +2,17 @@
   <br />
   <br />
   <div class="container-fluid">
-    <div class="item-card">
-      <br>
-      <HistoryUser :item="item" v-for="item in GStore.item.histories" :key="item.id" />
-
-      <div class="row">
-        <div class="col-12">
-          <!-- <img :src="GStore.item.auctionItem.itemImage" /> -->
-          <br />
-        </div>
-      </div>
-       <!-- <h1>
-        HighestPrice: <span id="front">{{ GStore.item.highestPrice }}</span>
-      </h1>
-      <h2>
-        Name: <span id="front">{{ GStore.item.auctionItem.itemName }}</span>
-      </h2> -->
-      <div class="card">
-        <!-- <h3>
-          ITEMDESCRIPTION:
-          <span id="front">{{ GStore.item.auctionItem.itemDescription }}</span>
-        </h3> -->
-      </div>
-      <!-- <p>Current Price: {{ GStore.item.price }} THB</p> -->
-    </div>
+    <h1>Own Item</h1>
+      <OwnUser :item="item" v-for="item in GStore.user.own" :key="item.itemId" />
   </div>
-  <div class="row">
+  <br>
+  <div class="roww">
+    <h1>Auction History</h1>
     <!-- <SubmitPrice :item="GStore.item" /> -->
+    <br>
+    <div class="card">
+      <HistoryUser :item="item" v-for="item in GStore.user.history" :key="item.id" />
+    </div>
   </div>
 </template>
 
@@ -36,12 +20,14 @@
 // import ItemService from "../services/ItemService.js";
 // import SubmitPrice from "@/components/SubmitPrice.vue";
 import HistoryUser from "@/components/HistoryUser.vue";
+import OwnUser from "@/components/OwnUser.vue";
 export default {
   inject: ["GStore"],
   name: "Itemdetail",
   components: {
     // SubmitPrice,
-    HistoryUser
+    HistoryUser,
+    OwnUser
   },
   data() {
     return {
@@ -53,6 +39,14 @@ export default {
 </script>
 
 <style scoped>
+.roww{
+  background-image: url("../assets/loginsweetdount.jpg");
+  padding-top: 2%;
+  padding-bottom: 2%;
+  width: 100%;
+  height: 500px;
+  margin-bottom: 3%;
+}
 .col-12 {
   padding: 1%;
 }
@@ -70,6 +64,7 @@ img {
   padding-top: 2%;
   padding-bottom: 2%;
   width: 100%;
+  height: 500px;
 }
 .item-card {
   width: 50%;
