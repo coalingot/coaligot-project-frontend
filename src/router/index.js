@@ -3,8 +3,35 @@ import ItemList from "../views/ItemList.vue";
 import AddItems from "@/views/AddItems.vue";
 import Login from "../views/LoginForm.vue";
 import Register from "../views/RegisterForm.vue";
-
+import Itemdetail from "../views/Itemdetail.vue";
+import ItemService from "../services/ItemService.js";
+import Global_Store from "@/store";
 const routes = [
+  {
+    path: "/itemdetail/:id",
+    name: "Itemdetail",
+    component: Itemdetail,
+    props: true,
+    beforeEnter: (to) => {
+      return ItemService
+        .getItem(to.params.id)
+        .then((response) => {
+          Global_Store.item = response.data;
+          console.log( Global_Store.item )
+        })
+        .catch((error) => {
+          if (error.response && error.response.status == 404) {
+            return {
+              name: "404",
+            };
+          } else {
+            return {
+              name: "network_error",
+            };
+          }
+        });
+    },
+  },
   {
     path: "/",
     name: "ItemList",

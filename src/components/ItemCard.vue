@@ -1,8 +1,8 @@
 <template>
-  <!-- <router-link
+  <router-link
     class="event-link"
-    :to="{ name: 'EventDetails', params: { id: event.id } }"
-  > -->
+    :to="{ name: 'Itemdetail', params: { id: item.auctionItem.itemId } }"
+  >
   <div class="column">
     <div class="item-card">
       <p class="detail-text">{{ item.auctionItem.itemName }}</p>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <!-- </router-link> -->
+  </router-link>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
   font-size: 18px;
   margin-top: auto;
   margin-bottom: auto;
-  padding: 5px;
+  padding: 10px;
 }
 
 img {
