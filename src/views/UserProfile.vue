@@ -3,7 +3,9 @@
   <br />
   <div class="container-fluid">
     <div class="item-card">
-      {{GStore.user}}
+      <br>
+      <HistoryUser :item="item" v-for="item in GStore.item.histories" :key="item.id" />
+
       <div class="row">
         <div class="col-12">
           <!-- <img :src="GStore.item.auctionItem.itemImage" /> -->
@@ -33,11 +35,13 @@
 <script>
 // import ItemService from "../services/ItemService.js";
 // import SubmitPrice from "@/components/SubmitPrice.vue";
+import HistoryUser from "@/components/HistoryUser.vue";
 export default {
   inject: ["GStore"],
   name: "Itemdetail",
   components: {
     // SubmitPrice,
+    HistoryUser
   },
   data() {
     return {
