@@ -26,14 +26,6 @@
                 <br />
                 <br />
                 <div class="form-group" id="Button">
-                  <!-- <button>
-                    <span
-                      v-show="loading"
-                      class="spinner-border spinner-border-sm"
-                    ></span>
-                    <span>Login</span>
-                  </button> -->
-
                   <button class="btn btn-block btn-lg btn-color">
                     <span
                       v-show="loading"
@@ -59,13 +51,9 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-// import api from "@/services/Connection.js";
 import AuthService from "@/services/AuthService.js";
-import Global_Store from "@/store";
 import * as yup from "yup";
 export default {
-  inject: [Global_Store],
-
   name: "Login",
   components: {
     Form,
@@ -81,15 +69,12 @@ export default {
       loading: false,
       message: "",
       schema,
-      biguser: null,
     };
   },
   methods: {
     handleLogin(user) {
       AuthService.login(user)
         .then(() => {
-          console.log("i love u");
-          // this.$router.go()
           this.$router.push({ name: "ItemList" });
         })
         .catch(() => {
@@ -101,9 +86,6 @@ export default {
 </script>
 
 <style scoped>
-/* #text {
-  padding: 0px 100px 0px 100px;
-} */
 #Button {
   padding-right: 10%;
   padding-left: 10%;
