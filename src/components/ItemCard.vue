@@ -5,9 +5,9 @@
   > -->
   <div class="column">
     <div class="item-card">
-      <p class="detail-text">{{ item.itemName }}</p>
-      <img :src="item.itemImage" />
-      <p class="detail-text">Start Price: {{ item.price }} THB</p>
+      <p class="detail-text">{{ item.auctionItem.itemName }}</p>
+      <img :src="item.auctionItem.itemImage" />
+      <p class="detail-text">Current Price: {{ item.highestPrice }} THB</p>
     </div>
   </div>
 

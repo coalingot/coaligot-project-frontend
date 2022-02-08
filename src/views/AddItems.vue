@@ -38,14 +38,14 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="startPrice">Start Price</label>
+                        <label for="price">Start Price</label>
                         <Field
-                          name="startPrice"
-                          type="double"
+                          name="price"
+                          type="text"
                           class="form-control"
                         />
                         <ErrorMessage
-                          name="startPrice"
+                          name="price"
                           class="error-feedback"
                         />
                       </div>
@@ -110,7 +110,6 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import ItemService from "../services/ItemService.js";
 import UploadImages from "vue-upload-drop-images";
-// eslint-disable-next-line
 
 export default {
   name: "AddItems",
@@ -132,7 +131,7 @@ export default {
         .required("Item Description is required!")
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
-      startPrice: yup
+      price: yup
         .string(),
       endDate: yup
         .string(),
@@ -145,10 +144,21 @@ export default {
       loading: false,
       message: "",
       schema,
+      files: [],
+      itemImage: ""
     };
   },
-    methods: {
+  methods: {
     handleItem(item) {
+      Promise.all(
+        this.files.map((file) => {
+          console.log(file);
+          return ItemService.uploadFile(file);
+        })
+      ).then((response) => {
+        item.itemImage = response.map((r) => r.data);
+        item.itemImage = item.itemImage[0];
+        console.log(item.itemImage);
         ItemService.postItem(item)
           .then(() => {
             this.message = "";
@@ -156,10 +166,14 @@ export default {
             this.loading = true;
           })
           .catch(() => {
-            this.$router.push("NetworkError");
-          })
-      }
-    }
+            this.message ="Connect Fail"
+          });
+        });
+      },
+     handleImages(files) {
+      this.files = files;
+    },
+  }
 };
 </script>
 
