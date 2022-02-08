@@ -1,7 +1,7 @@
 <template>
-  {{Global_Store.item}}
-    <div id="nav">
-      <!-- <router-link :to="{ name: 'PatientDetails', params: { id } }">
+  {{ Global_Store.item }}
+  <div id="nav">
+    <!-- <router-link :to="{ name: 'PatientDetails', params: { id } }">
         Details
       </router-link>
       |
@@ -12,10 +12,9 @@
       <router-link :to="{ name: 'Dates', params: { id } }">
         Vaccine
       </router-link> -->
-      GG
-      <ItemDetail />
-    </div>
-
+    GG
+    <ItemDetail />
+  </div>
 </template>
 
 <script>

@@ -6,7 +6,6 @@ import Global_Store from "../store";
 import Login from "../views/LoginForm.vue";
 import Register from "../views/RegisterForm.vue";
 
-import PostItem from "../views/Postitem.vue";
 import ItemListLayout from "../views/PostItemdetail.vue";
 
 const routes = [

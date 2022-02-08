@@ -8,9 +8,9 @@ export default {
     return apiClient.get("/items/" + id);
   },
   postItem(item) {
-    console.log(item.itemImage)
-    console.log(item)
-    let double = parseFloat(item.price).toFixed(2)
+    console.log(item.itemImage);
+    console.log(item);
+    let double = parseFloat(item.price).toFixed(2);
     return apiClient.post("/items", {
       itemName: item.itemName,
       itemDescription: item.itemDescription,

@@ -39,15 +39,8 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="price">Start Price</label>
-                        <Field
-                          name="price"
-                          type="text"
-                          class="form-control"
-                        />
-                        <ErrorMessage
-                          name="price"
-                          class="error-feedback"
-                        />
+                        <Field name="price" type="text" class="form-control" />
+                        <ErrorMessage name="price" class="error-feedback" />
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -131,12 +124,9 @@ export default {
         .required("Item Description is required!")
         .min(3, "Must be at least 3 characters!")
         .max(300, "Must be maximum 300 characters!"),
-      price: yup
-        .string(),
-      endDate: yup
-        .string(),
-      itemImage: yup
-        .string(),
+      price: yup.string(),
+      endDate: yup.string(),
+      itemImage: yup.string(),
     });
 
     return {
@@ -145,7 +135,7 @@ export default {
       message: "",
       schema,
       files: [],
-      itemImage: ""
+      itemImage: "",
     };
   },
   methods: {
@@ -166,14 +156,14 @@ export default {
             this.loading = true;
           })
           .catch(() => {
-            this.message ="Connect Fail"
+            this.message = "Connect Fail";
           });
-        });
-      },
-     handleImages(files) {
+      });
+    },
+    handleImages(files) {
       this.files = files;
     },
-  }
+  },
 };
 </script>
 
